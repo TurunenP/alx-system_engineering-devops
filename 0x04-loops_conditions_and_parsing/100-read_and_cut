@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# This script reads and cuts the content of the /etc/passwd file
+
+# Read the /etc/passwd file line by line
+while IFS=: read -r username uid gid gecos homedir shell; do
+    # Print username, uid, and homedir
+    echo "$username:$uid:$homedir"
+done </etc/passwd

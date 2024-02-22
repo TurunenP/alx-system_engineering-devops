@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Set the Internal Field Separator (IFS) to colon (:)
+IFS=":"
+
+# Read /etc/passwd line by line and extract relevant information
+while read -r username password uid gid info homedir shell; do
+    echo "The user $username is part of the $gid gang, lives in $homedir and rides $shell. $uid's place is protected by the passcode $password, more info about the user here: $info"
+done </etc/passwd
