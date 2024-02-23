@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Find the PID of the script itself
+script_pid=$$
+
+# Find the PID of the bash processes
+bash_pids=$(pgrep -f bash)
+
+# Output the PID and process name for each bash process
+
+pgrep bash -l
