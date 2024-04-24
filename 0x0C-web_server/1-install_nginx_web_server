@@ -7,10 +7,10 @@ apt-get update
 apt-get -y install nginx
 
 # Allow traffic on port 80 (HTTP) in the firewall
-ufw allow 'Nginx HTTP'
+sudo ufw allow 'Nginx HTTP'
 
 # Create a default index.html file with "Hello World!"
-echo "Hello World!" > /var/www/html/index.html
+sudo bash -c 'echo "Hello World!" > /var/www/html/index.html'
 
 # Restart nginx service to apply changes
-service nginx restart
+sudo service nginx restart
