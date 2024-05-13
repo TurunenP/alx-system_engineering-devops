@@ -1,4 +1,13 @@
-#!/usr/bin/env bash
-# Start Apache so as to return a
-# page conatining Hello Holberton
-service apache2 start
+FROM ubuntu:14.04
+
+# Update package index and install Apache
+RUN apt-get update && apt-get install -y apache2
+
+# Create an HTML file with "Hello Holberton" content
+RUN echo "Hello Holberton" > /var/www/html/index.html
+
+# Expose port 80
+EXPOSE 80
+
+# Start Apache service when the container starts
+CMD ["apache2ctl", "-D", "FOREGROUND"]
