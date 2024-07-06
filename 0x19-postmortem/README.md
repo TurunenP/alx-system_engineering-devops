@@ -1,10 +1,11 @@
-Postmortem
+# Postmortem
 
 Postmodern Incident Issue Report for 504 error / Site Outage
-Summary
-On September 13th, 2023 at midnight the server access went down resulting in 504 error for anyone trying to access a website. Background on the server being based on a LMPS stack.
 
-Timeline
+## Summary
+On 6th of July, 2024 at midnight the server access went down resulting in 504 error for anyone trying to access a website. Background on the server being based on a LMPS stack.
+
+## Timeline
 00:00 SAT - 500 error for anyone trying to access the website
 
 00:05 SAT - Ensuring Apache and MySQL are up and running.
@@ -27,7 +28,7 @@ Timeline
 
 00:40 SAT - Server is now running normally and the website is loading properly.
 
-Root Cause and Resolution:
+### Root Cause and Resolution:
 
 The issue was connected with a wrong file name being reffered to in the wp-settings.php file. The error was raised when trying to curl the server, wherein the server responded with 500 error. By checking the error logs it was found that no error log file was being created for the php errors and reading the default error log for apache did not result in much information regarding the premature closing of the server.
 
@@ -35,6 +36,6 @@ Once understood that the errors for php logs were not being directed anywhere th
 
 This was clearly a misspelled error that resulted in the error to site access. As this was one server that the error was found in, this error might have been replicated in other servers as well. An easy fix by changing the file extension by puppet would result in the fix being made to other servers as well. A quick deployment of the puppet code replaced all misspelled file extensions with the right one and restarting of the server resulted in properly loading of the site and server.
 
-Corrective and Preventive Measures:
+### Corrective and Preventive Measures:
 
 All servers and sites should have error logging turned on to easily identify errors if anything goes wrong. All servers and sites should be tested locally before deploying on a multi-server setup this will result in correcting errors before going live resulting in less fixing time if site goes down.
